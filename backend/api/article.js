@@ -33,8 +33,13 @@ module.exports = app => {
         try {
             const rowsDeleted = await app.db('articles') 
                 .where({id: req.params.id}).del();
-                existsOrError(rowsDeleted, 'Artigo não foi encontrado');
-
+            
+            try {
+                    existsOrError(rowsDeleted, 'Artigo não foi encontrado');              
+            }catch(msg){
+                res.status(400).send(msg);
+            } 
+                       
             res.status(204).send('sucesso')
         }catch(msg) {
             res.status(500).send(msg);
@@ -63,11 +68,7 @@ module.exports = app => {
                 return res.json(article)
             })
             .catch(err => res.status(500).send(err))
-
     }
 
-
-
-    
     return { save, remove, get, getById };
 }
