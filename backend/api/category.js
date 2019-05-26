@@ -85,7 +85,7 @@ module.exports = app => {
 
     const getById = (req, res) => {
         app.db('categories')
-            .where({ id: res.params.id })
+            .where({ id: req.params.id })
             .first()
             .then(category => res.json(category))
             .catch(err => res.status(500).send(err))
@@ -103,7 +103,7 @@ module.exports = app => {
 
     const getTree = (req, res) => {
         app.db('categories')
-        //com path -   res.json(toTree(withPath(categories)))
+            //com path -   res.json(toTree(withPath(categories)))
             .then(categories => res.json(toTree(categories)))
             .catch(err => res.status(500).send(err))
 
