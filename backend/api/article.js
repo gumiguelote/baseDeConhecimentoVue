@@ -1,5 +1,5 @@
 module.exports = app => {
-    const { existsOrError, notExistsOrError } = app.api.validation
+    const { existsOrError } = app.api.validation
 
     const save = (req,res) => {
         const article = { ...req.body };
@@ -33,7 +33,7 @@ module.exports = app => {
         try {
             const rowsDeleted = await app.db('articles') 
                 .where({id: req.params.id}).del();
-                notExistsOrError(rowsDeleted, 'Artigo não foi encontrado');
+                existsOrError(rowsDeleted, 'Artigo não foi encontrado');
 
             res.status(204).send('sucesso')
         }catch(msg) {
