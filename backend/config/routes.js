@@ -27,5 +27,11 @@ module.exports = app => {
 
     //Artigos/postagens
     app.route('/artilcles')
+        .get(app.api.article.get)
         .post(app.api.article.save);
-}
+
+    app.route('/article/:id')
+        .get(app.api.article.getById)
+        .put(app.api.article.save)
+        .delete(app.api.article.remove);
+}   
