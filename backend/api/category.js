@@ -15,12 +15,12 @@ module.exports = app => {
             app.db('categories')
                 .update(category)
                 .where({ id: category.id })
-                .then(_ => res.status(204).send('ok'))
+                .then(_ => res.status(204).send('sucesso'))
                 .catch(err => res.status(500).send(err))
         } else {
             app.db('categories')
                 .insert(category)
-                .then(_ => res.status(204).send('ok'))
+                .then(_ => res.status(204).send('sucesso'))
                 .catch(err => res.status(500).send(err))
         }
     }
@@ -43,7 +43,7 @@ module.exports = app => {
                 .where({ id: category.id }).del();
             existsOrError(rowsDeleted, 'Categoria não foi encontrada');
 
-            res.status(204).send('ok')
+            res.status(204).send('sucesso')
 
         } catch (msg) {
             res.status(400).send(msg)

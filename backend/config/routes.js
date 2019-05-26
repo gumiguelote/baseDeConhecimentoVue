@@ -2,6 +2,7 @@
 //const user = require('../api/user')
 
 module.exports = app => {
+    //usuários
     app.route('/users')
         .post(app.api.user.save)
         .get(app.api.user.get);
@@ -10,17 +11,21 @@ module.exports = app => {
         .put(app.api.user.save)
         .get(app.api.user.getById);
 
+    //categorias
     app.route('/categories')
         .get(app.api.category.get)
         .post(app.api.category.save);
 
-    // Cuidado com a ordem das Rotas! Tem que vir antes de /categories/:id
+    //ListaMenuLateralEmArvore Cuidado com a ordem das Rotas! Tem que vir antes de /categories/:id
     app.route('/categories/tree')
-       .get(app.api.category.getTree)
+       .get(app.api.category.getTree);
 
     app.route('/categories/:id')
         .put(app.api.category.save)
         .get(app.api.category.getById)
         .delete(app.api.category.remove);
 
+    //Artigos/postagens
+    app.route('/artilcles')
+        .post(app.api.article.save);
 }
