@@ -1,9 +1,13 @@
+const { db } = require('./.env');
+
 module.exports = {
-    client: 'mysql',
+    client: db.client,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: db.database,
+      user: db.user,
+      password: db.password,
+      host: db.host,
+      port: db.port,
     },
     pool: {
       min: 2,
